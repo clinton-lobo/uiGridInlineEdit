@@ -2792,7 +2792,8 @@ function ($compile, $timeout, $window, $document, gridUtil, uiGridConstants, i18
 
             // Put the container name on this element as a class
             $elm.addClass('ui-grid-render-container-' + $scope.containerId);
-
+             
+            if(!$scope.grid.options.disableMouseWheel){
             // Scroll the render container viewport when the mousewheel is used
             gridUtil.on.mousewheel($elm, function (event) {
               var scrollEvent = new ScrollEvent(grid, rowContainer, colContainer, ScrollEvent.Sources.RenderContainerMouseWheel);
@@ -2844,7 +2845,8 @@ function ($compile, $timeout, $window, $document, gridUtil, uiGridConstants, i18
               }
 
             });
-
+          }
+            
             $elm.bind('$destroy', function() {
               $elm.unbind('keydown');
 
@@ -16357,7 +16359,9 @@ module.filter('px', function() {
               if (n !== o) {
                 setEditable();
               }
-              if(n.grid.options.enableInlineRowEditing){
+              if(n.grid.options.enableInlineRowEditing && n.grid.rows.some(function(gridRow) {
+	            	  return gridRow.inlineEdit && gridRow.inlineEdit.isEditModeOn;
+	              })){              
 	              if ((typeof n.isSelected !== 'undefined') && n.isSelected){
 	                  beginInlineEditing();
 	              }else{
@@ -16414,7 +16418,9 @@ module.filter('px', function() {
 	               });
 	               
 	              rowBatchSelectionDereg = uiGridCtrl.grid.api.selection.on.rowSelectionChangedBatch($scope,function(rows){
-		            	rows.forEach(function(thisRow){
+			            var visibleRows = rows[0].grid.renderContainers.body.renderedRows;
+		            	
+	            	    visibleRows.forEach(function(thisRow){
 	       					if(thisRow.isSelected){
 	       						beginInlineEditing();
 	        				}    	            	  
@@ -16741,8 +16747,9 @@ module.filter('px', function() {
                  }
                  
    			  	 createInputHtmlElement();
-
-                 if ($scope.row.inlineEdit && $scope.row.inlineEdit.isEditModeOn) {
+                 var inlineEditObj = $scope.row.inlineEdit;
+                 var cellEditing = inlineEditObj.entity[$scope.col.field];
+                 if (inlineEditObj && inlineEditObj.isEditModeOn && cellEditing && cellEditing.isEdit) {
                      createEditor();
                   }
 
@@ -28548,7 +28555,7 @@ angular.module('ui.grid').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('ui-grid/cellEditor',
-    "<div><form name=\"inputForm\"><input type=\"INPUT_TYPE\" ng-class=\"'colt' + col.uid\" ui-grid-editor ng-model=\"MODEL_COL_FIELD\"></form></div>"
+    "<div><form name=\"inputForm\"><input type=\"INPUT_TYPE\" ng-class=\"'colt' + col.uid\" ui-grid-editor ng-model=\"MODEL_COL_FIELD\" required></form></div>"
   );
 
 
