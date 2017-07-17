@@ -2,17 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Angular UI-Grid Inline Edit POC</title>
+    <title>Angular UI-Grid Inline Editing</title>    
     <link rel="stylesheet" href="../Css/bootstrap.min.css">
     <link rel="stylesheet" href="../Css/ui-grid.css">
+    <link rel="stylesheet" href="../Css/style.css" />        
 </head>
 <body ng-app="app" class="container">
 <div class="row col-lg-12" ng-controller="gridCtrl">
 
     <div ui-grid="gridOptions" ui-grid-move-columns ui-grid-edit ui-grid-row-edit ui-grid-selection ui-grid-expandable class="grid" style="height:800px"></div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script data-require="lodash.js@*" data-semver="4.16.2" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.2/lodash.js"></script>
 <script type="application/javascript" src="../Js/vendor/angular.js"></script>
-<script type="application/javascript" src="../Js/vendor/ui-grid.js"></script>
+<script type="application/javascript" src="../Js/vendor/ui-grid-inline-editing.js"></script>
 <script type="application/javascript" src="../Js/app/app.js"></script>
 </body>
 </html>

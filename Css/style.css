@@ -1,0 +1,64 @@
+/* Styles go here */
+
+.inline-editing-grid {
+  width: 100%;
+  border-radius: .5em;
+  box-shadow: 0 0 .5em #000;
+  box-sizing: border-box;
+}
+
+.ui-grid-row:nth-child(odd) .ui-grid-cell {
+    background-color:  rgb(243, 241, 241);
+}
+.ui-grid-row:nth-child(even) .ui-grid-cell {
+    background-color: #FFFFFF;
+}
+.ui-grid-row.ui-grid-row-selected > [ui-grid-row] > .ui-grid-cell {
+    background-color: #cfedf7;
+}
+.inline-editing-grid .highlight-cell{ background-color: #8cbde4 !important;  }
+.inline-editing-grid .ui-grid-render-container-body .ui-grid-header-cell,
+.inline-editing-grid .ui-grid-render-container-left .ui-grid-header-cell,
+.inline-editing-grid .ui-grid-row,
+.inline-editing-grid .ui-grid-cell,
+.inline-editing-grid .ui-grid-cell .ui-grid-vertical-bar {
+    height: 20px !important;
+    font-size: 12px;
+    line-height: 20px;
+}
+.inline-editing-grid .ui-grid-render-container-body .ui-grid-header-cell,
+.inline-editing-grid .ui-grid-render-container-left .ui-grid-header-cell,
+.inline-editing-grid .ui-grid-header-cell {
+    height: 20px !important;
+}
+.inline-editing-grid .ui-grid-filter-container {
+    padding: 1px 1px;
+}
+.inline-editing-grid .ui-grid-cell-contents {
+    padding: 1px 1px;
+}
+.inline-editing-grid form[name="inputForm"] select, .inline-editing-grid form[name="inputForm"] input {
+	font-size: 12.5px !important;
+	width: 100% !important;
+}
+
+.inline-editing-grid .ui-grid-header-cell .ui-grid-cell-contents {
+     white-space: normal;
+     -ms-text-overflow: clip;
+     -o-text-overflow: clip;
+     text-overflow: clip;
+     overflow: visible;
+} 
+
+div.ui-grid-header-cell-primary-focus {
+	/* display: inline; */
+	margin-right: 20px;
+}
+
+*:focus{
+	outline:none;
+}
+
+.ui-grid-header-cell-label{
+	word-wrap: break-word;
+}
